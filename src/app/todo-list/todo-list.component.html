@@ -14,9 +14,15 @@
       <button class="btn btn-primary" type="button" id="btn-add-task" (click)="addTask()">Agregar</button>
     </div>
 
+    <!-- Input de search -->
+    <div class="input-group mb-4">
+      <input type="text" class="form-control" placeholder="Buscar tarea" [(ngModel)]="searchTerm"
+        (input)="searchTasks()">
+    </div>
+
     <!-- Task list -->
-    <ul class="list-group mb-0" *ngIf="tasks && tasks.length > 0; else notDataTpl">
-      <li *ngFor="let task of tasks; let i = index"
+    <ul class="list-group mb-0" *ngIf="(searchTerm ? filteredTasks.length > 0 : tasks.length > 0); else notDataTpl">
+      <li *ngFor="let task of (searchTerm ? filteredTasks : tasks); let i = index"
         class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 rounded"
         style="background-color: #f4f6f7;">
         <div>
@@ -44,7 +50,8 @@
     <ng-template #notDataTpl>
       <div class="d-flex flex-column align-items-center">
         <img src="assets/svgs/undraw_clean_up_re_504g.svg" width="200" height="200" alt="No hay data">
-        <span class="fs-6 text-secondary">No se encontro ninguna tarea</span>
+        <span class="fs-6 text-secondary d-flex" *ngIf="searchTerm">No se encontraron resultados para "<p class="fw-semibold">{{ searchTerm }}</p>"</span>
+        <span class="fs-6 text-secondary" *ngIf="!searchTerm">No se encontro ninguna tarea</span>
       </div>
     </ng-template>
 

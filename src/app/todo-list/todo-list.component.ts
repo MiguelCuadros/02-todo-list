@@ -9,10 +9,17 @@ export class TodoListComponent {
 
   editableId: number | null = null;
   newTask: string = '';
+  searchTerm: string = '';
+  filteredTasks: any[] = [];
+
   tasks: any[] = [
     {
       title: 'Crear la lista de tareas',
       completed: true,
+    },
+    {
+      title: 'Jugar mi fuchibol',
+      completed: false,
     },
     {
       title: 'Realizar la estructura HTML',
@@ -20,7 +27,7 @@ export class TodoListComponent {
     },
     {
       title: 'Desplegar el proyecto en la web',
-      completed: false,
+      completed: true,
     },
   ];
 
@@ -54,6 +61,12 @@ export class TodoListComponent {
   stopEdit(task: any, title: string): void {
     this.editableId = null;
     this.updateTask(task, title);
+  }
+
+  searchTasks() {
+    this.filteredTasks = this.tasks.filter(task => {
+      return task.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
   }
 
 }
