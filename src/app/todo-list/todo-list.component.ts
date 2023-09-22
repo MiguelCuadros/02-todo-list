@@ -3,14 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent {
-
   editableId: number | null = null;
-  newTask: string = '';
-  searchTerm: string = '';
-  filteredTasks: any[] = [];
+  newTask = '';
 
   tasks: any[] = [
     {
@@ -18,26 +15,29 @@ export class TodoListComponent {
       completed: true,
     },
     {
-      title: 'Jugar mi fuchibol',
-      completed: false,
-    },
-    {
       title: 'Realizar la estructura HTML',
       completed: true,
     },
     {
+      title: 'Agregar estilos y validaciones',
+      completed: false,
+    },
+    {
+      title: 'Elaborar el flujo y animaciones',
+      completed: false,
+    },
+    {
       title: 'Desplegar el proyecto en la web',
-      completed: true,
+      completed: false,
     },
   ];
 
   addTask() {
-    const task = {
+    const newTask = {
       title: this.newTask,
       completed: false,
-    }
-    this.tasks.push(task);
-    this.newTask = '';
+    };
+    this.tasks.push(newTask);
   }
 
   updateTask(task: any, title: string) {
@@ -54,6 +54,10 @@ export class TodoListComponent {
     this.tasks.splice(index, 1);
   }
 
+  changeModel() {
+    console.log(this.tasks);
+  }
+
   startEdit(id: number): void {
     this.editableId = id;
   }
@@ -62,11 +66,4 @@ export class TodoListComponent {
     this.editableId = null;
     this.updateTask(task, title);
   }
-
-  searchTasks() {
-    this.filteredTasks = this.tasks.filter(task => {
-      return task.title.toLowerCase().includes(this.searchTerm.toLowerCase());
-    });
-  }
-
 }
