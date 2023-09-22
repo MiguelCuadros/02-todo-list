@@ -7,11 +7,11 @@ import { Task } from '../interfaces/task.interface';
 export class TaskService {
   private tasks: Task[] = [
     {
-      title: 'Crear la lista de tareas',
+      title: 'Jugar mi fuchibol',
       completed: true,
     },
     {
-      title: 'Realizar la estructura HTML',
+      title: 'Terminar el proyecto de TODO LIST',
       completed: false,
     },
   ];
