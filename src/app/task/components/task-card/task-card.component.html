@@ -1,0 +1,12 @@
+<div class="card rounded-3">
+    <div class="card-body p-4">
+        <!-- Title -->
+        <app-task-header title="Clases de TEI" date="22/09/2023" course="AS221 - TEI"></app-task-header>
+
+        <!-- Input text -->
+        <app-task-input (createTask)="addTask($event)"></app-task-input>
+
+        <!-- Task list -->
+        <app-task-list></app-task-list>
+    </div>
+</div>
